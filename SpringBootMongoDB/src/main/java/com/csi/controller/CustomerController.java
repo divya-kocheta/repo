@@ -74,6 +74,15 @@ public class CustomerController {
         return ResponseEntity.ok(custService.findByName(name));
     }
 
+    @GetMapping("/findbyadd/{add}")
+    public ResponseEntity<List<Customer>> findByAddress(@PathVariable String add)
+    {
+        return ResponseEntity.ok(custService.findAll()
+                .stream()
+                .filter(c->c.getCustAddress().equals(add))
+                .toList());
+    }
+
     @GetMapping("/findbymailid/{mail}")
     public ResponseEntity<Customer> findByEmailId(@PathVariable String mail)
     {
@@ -148,6 +157,7 @@ public class CustomerController {
    {
        return ResponseEntity.ok(custService.saveAll(cList));
    }
+
 
 
 
